@@ -1,0 +1,12 @@
+*.DS_Store*
+.idea
+bin
+lib
+pip-selfcheck.json
+pyvenv.cfg
+*.py[cod]
+*.egg-info
+*.egg
+__pycache__/
+.cache
+data/
