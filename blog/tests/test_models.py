@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from blog.models import BlogEntry
+from blog.models import BlogEntry, Application
 
 
 class BlogEntryTest(TestCase):
@@ -22,3 +22,15 @@ class BlogEntryTest(TestCase):
     def test_blog_entry_name_slug(self):
         """Blog entry URL slugs are based of the defined name."""
         self.assertEqual(self.entry.slug, 'test-entry')
+
+    def test_absolute_url_from_pk(self):
+        self.assertEqual(self.entry.get_absolute_url(), '/blog/' + str(self.entry.pk))
+
+
+class ApplicationTest(TestCase):
+    def setUp(self):
+        self.app = Application.objects.create(name='My Great app',
+                                              description='Testing the Application model.')
+
+    def test_absolute_url_from_name(self):
+        self.assertEqual(self.app.url, '/my-great-app')
