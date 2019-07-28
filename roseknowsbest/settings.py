@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's-a1)am(3f2gcrn)mswpys$*jd#t-grstft*+2r^mg#m&2ul#&'
+SECRET_KEY = os.environ.get('ROSEKNOWSBEST_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.context_processors.add_active_apps_and_modules',
             ],
         },
     },
@@ -81,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'roseknowsbest',
-        'USER': 'michaelrose',
-        'PASSWORD': 'password1',
+        'USER': os.environ.get('ROSEKNOWSBEST_PG_USER'),
+        'PASSWORD': os.environ.get('ROSEKNOWSBEST_PG_USER'),
         'HOST': '',  # localhost
         'PORT': '5432',
     },

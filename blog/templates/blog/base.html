@@ -8,13 +8,13 @@
     <meta name="author" content="Michael Rose">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
     <link rel="icon" type="image/jpeg" href="{% static 'blog/img/rose-temp.jpg' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{% static 'blog/css/normalize.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/css/roseknowsbest.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
     {% block stylesheets %}{% endblock %}
 
   <meta name="theme-color" content="#fafafa">
@@ -25,13 +25,23 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
+  <!-- Top nav -->
+  <ul id="header">
+      {% for app in applications %}
+      <li class="header-application">
+          <a href="{{ app.url }}">{{ app.name }}</a>
+      </li>
+      {% endfor %}
+  </ul>
+  <!-- Content panel -->
+
+  <!-- Page content -->
   {% block content %}{% endblock %}
 
-  <script src="{% static 'blog/js/vendor/modernizr-3.6.0.min.js' %}"></script>
-  <script src="{% static 'blog/js/vendor/jquery-3.3.1.min.js' %}"></script>
+  <!-- Footer -->
+
+  <!-- Add .js at the end for faster page load -->
   <script src="{% static 'blog/js/roseknowsbest.js' %}"></script>
-  <script src="{% static 'blog/js/plugins.js' %}"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
