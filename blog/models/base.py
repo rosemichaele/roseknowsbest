@@ -22,6 +22,7 @@ class SiteComponent(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ['created_date']
 
     def __str__(self):
         return self.name
