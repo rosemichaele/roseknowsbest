@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Python package for distribution and release management of the roseknowsbest.com Django site."
 authors = ["Michael Rose <michaelrose126@gmail.com>"]
 license = "Apache-2.0"
+homepage = "https://www.roseknowsbest.com/"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
