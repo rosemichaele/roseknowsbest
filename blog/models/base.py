@@ -56,7 +56,7 @@ class Application(SiteComponent):
         return self.get_absolute_url()
 
     def get_absolute_url(self):
-        return '/' + slugify(self.name)
+        return '/' + slugify(self.name) + '/'
 
 
 class Module(SiteComponent):

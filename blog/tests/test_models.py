@@ -48,4 +48,4 @@ class ApplicationTest(TestCase):
                                               description='Testing the Application model.')
 
     def test_absolute_url_from_name(self):
-        self.assertEqual(self.app.url, '/my-great-app')
+        self.assertEqual(self.app.url, '/my-great-app/')

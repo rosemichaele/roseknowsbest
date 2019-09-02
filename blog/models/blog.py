@@ -8,15 +8,24 @@ from .base import SiteComponent, Message
 
 class BlogEntry(SiteComponent):
     """The base for content pages within the blog application."""
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                   on_delete=models.CASCADE,
-                                   related_name='blog_author',
-                                   editable=False,
-                                   )
-    modified_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                    on_delete=models.CASCADE,
-                                    related_name='blog_editor',
-                                    )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='blog_author',
+        editable=False,
+    )
+
+    modified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='blog_editor',
+    )
+
+    topic = models.CharField(
+        max_length=40,
+        null=True,
+        blank=True,
+    )
 
     @property
     def author(self):
@@ -38,44 +47,54 @@ class BlogContent(SiteComponent):
         ('text', 'text'),
     ]
 
-    content_type = models.CharField(max_length=100,
-                                    choices=CONTENT_TYPES,
-                                    )
+    content_type = models.CharField(
+        max_length=100,
+        choices=CONTENT_TYPES,
+    )
 
-    content_text = models.TextField(max_length=8000,
-                                    null=True,
-                                    blank=True
-                                    )
+    content_text = models.TextField(
+        max_length=8000,
+        null=True,
+        blank=True,
+    )
 
-    image_file = models.ImageField(upload_to='blog/img',
-                                   null=True,
-                                   blank=True,
-                                   )
+    image_file = models.ImageField(
+        upload_to='blog/img/uploads',
+        null=True,
+        blank=True,
+    )
 
 
 class BlogSection(SiteComponent):
     """Allow blog entries to be broken into separate sections for easy organization + control."""
 
-    order = models.IntegerField(verbose_name="Ordering of sections within a blog.",
-                                validators=[
-                                    MinValueValidator(0, message="Order must be greater than or equal to zero."),
-                                ])
+    order = models.IntegerField(
+        verbose_name="Ordering of sections within a blog.",
+        validators=[
+            MinValueValidator(0, message="Order must be greater than or equal to zero."),
+        ]
+    )
 
-    blog = models.ForeignKey(BlogEntry,
-                             on_delete=models.CASCADE,
-                             )
+    blog = models.ForeignKey(
+        BlogEntry,
+        on_delete=models.CASCADE,
+    )
 
-    content = models.OneToOneField(BlogContent,
-                                   on_delete=models.CASCADE,
-                                   )
+    content = models.OneToOneField(
+        BlogContent,
+        on_delete=models.CASCADE,
+    )
 
 
 class BlogComment(Message):
     """Comments on blog entries."""
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                   on_delete=models.CASCADE,
-                                   related_name='blog_commenter',
-                                   )
-    blog = models.ForeignKey(BlogEntry,
-                             on_delete=models.CASCADE,
-                             )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='blog_commenter',
+    )
+
+    blog = models.ForeignKey(
+        BlogEntry,
+        on_delete=models.CASCADE,
+    )
