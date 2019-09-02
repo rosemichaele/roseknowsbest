@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'roseknowsbest',
         'USER': os.environ.get('ROSEKNOWSBEST_PG_USER'),
-        'PASSWORD': os.environ.get('ROSEKNOWSBEST_PG_USER'),
+        'PASSWORD': os.environ.get('ROSEKNOWSBEST_PG_PASS'),
         'HOST': '',  # localhost
         'PORT': '5432',
     },
