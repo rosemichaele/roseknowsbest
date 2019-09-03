@@ -94,19 +94,24 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+html, body {
+  height: 100%;
+}
 
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
 
+#content {
+  min-height: calc(100vh - 70px);;
+  padding-bottom: 40px;
+}
 
-
-
-
-
-
-
-
-
-
-
+#footer {
+  height: 50px;
+}
 
  /* ==========================================================================
    Helper classes
