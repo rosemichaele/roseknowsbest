@@ -17,10 +17,12 @@ class BlogIndexView(generic.ListView):
     context_object_name = 'blog_entries'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return BlogEntry.objects.order_by('created_date')
+        """Return the last ten published blog entries."""
+        return BlogEntry.objects.filter(active=True).order_by('-created_date')[:10]
 
 
 class BlogEntryView(generic.DetailView):
     model = BlogEntry
     template_name = 'blog/entry.html'
+    context_object_name = 'entry'
+

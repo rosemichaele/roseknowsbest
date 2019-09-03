@@ -2,5 +2,16 @@
 {% block title %}Rose Knows Best - Blog Entry{% endblock %}
 
 {% block content %}
-<!-- This where the content of the blog entry will go. -->
+  <div class="container-fluid">
+      <p class="font-italic py-4">{{ entry.created_date }}</p>
+      <h1>
+          {{ entry.name }}
+          <small class="text-muted">{{ entry.author }}</></small>
+      </h1>
+      <p class="lead">{{ entry.description }}</p>
+      {% for section in entry.blogsection_set.all %}
+        <h4 class="text-secondary">{{ section.name }}</h4>
+        <p>{{ section.content.content_text }}</p>
+      {% endfor %}
+  </div>
 {% endblock %}

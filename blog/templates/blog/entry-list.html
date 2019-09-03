@@ -2,5 +2,34 @@
 {% block title %}Rose Knows Best - Blog{% endblock %}
 
 {% block content %}
-<!-- This where the list of blog entries will go -->
+  <!-- This is where the list of blog entries will go -->
+  <div class="container-fluid">
+      <h1>Blog</h1>
+      <p class="lead">Welcome to my blog!  The latest entries are listed in the table below.</p>
+      {% if blog_entries %}
+      <table class="table pt-4">
+          <thead>
+            <tr>
+              <th scope="col">Date Posted</th>
+              <th scope="col">Topic</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for entry in blog_entries %}
+          <tr>
+              <td>{{ entry.created_date }}</td>
+              <td class="text-muted">{{ entry.topic }}</td>
+              <td><a href="{{ entry.get_absolute_url }}">{{ entry.name }}</a></td>
+              <td class="text-muted">{{ entry.author }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+      {% else %}
+          There are no blog entries matching the search conditions.
+      {% endif %}
+      </ul>
+  </div>
 {% endblock %}
