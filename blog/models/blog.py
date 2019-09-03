@@ -69,7 +69,7 @@ class BlogSection(SiteComponent):
     """Allow blog entries to be broken into separate sections for easy organization + control."""
 
     order = models.IntegerField(
-        verbose_name="Ordering of sections within a blog.",
+        verbose_name="ordering of sections within a blog",
         validators=[
             MinValueValidator(0, message="Order must be greater than or equal to zero."),
         ]
@@ -84,6 +84,10 @@ class BlogSection(SiteComponent):
         BlogContent,
         on_delete=models.CASCADE,
     )
+
+    class Meta:
+        unique_together = ['blog', 'order']
+        ordering = ['order']
 
 
 class BlogComment(Message):
