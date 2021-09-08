@@ -12,7 +12,7 @@ python = "^3.6"
 django = "^2.2"
 psycopg2-binary = "^2.8"
 docutils = "^0.14.0"
-Pillow = "^6.1"
+Pillow = "^8.3"
 
 [tool.poetry.dev-dependencies]
 robotframework = "^3.1"
